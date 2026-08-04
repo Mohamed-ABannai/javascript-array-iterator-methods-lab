@@ -84,7 +84,7 @@ const devs = [
   { name: 'Dani', year: 1986 },
   { name: 'Matt', year: 1970 },
   { name: 'Wes', year: 2015 },
-]; 
+];
 
 
 const comments = [
@@ -112,7 +112,7 @@ born in the 1500's.
 */
 
 let veryOldInventors = [];
-veryOldInventors=inventors.filter((oneInventor)=>{return oneInventor.year > 1500 && oneInventor.year <1599})
+veryOldInventors = inventors.filter((oneInventor) => { return oneInventor.year > 1500 && oneInventor.year < 1599 })
 // Complete the exercise in the space below:
 
 // Check your work:
@@ -140,7 +140,7 @@ Hint: Return a new object literal from the callback that looks like:
 */
 
 let inventorNames = [];
-inventorNames=inventors.map((inventorName)=>{ return {first: inventorName.first , second: inventorName.last} })
+inventorNames = inventors.map((inventorName) => { return { first: inventorName.first, second: inventorName.last } })
 // Complete the exercise in the space below:
 
 // Check your work:
@@ -177,7 +177,7 @@ from an array of inventor objects
 */
 
 let inventorNamedAda = {};
-inventorNamedAda = inventors.find((oneName)=>{ return oneName.first === 'Ada'})
+inventorNamedAda = inventors.find((oneName) => { return oneName.first === 'Ada' })
 // Complete the exercise in the space below:
 
 // Check your work:
@@ -203,12 +203,12 @@ Hint: Use the String.prototype.split() method to separate the first and last
 */
 
 let firstLast = [];
-firstLast=people.map((oneitem)=>{
+firstLast = people.map((oneitem) => {
 
-let name =oneitem.split(',')
- 
+  let name = oneitem.split(',')
 
- return `${name[1]}  ${name[0]}`
+
+  return `${name[1]}  ${name[0]}`
 
 })
 // Complete the exercise in the space below:
@@ -272,10 +272,11 @@ old or older.
 */
 
 let isAdultPresent = null;
-isAdultPresent=devs.some((Person)=>{
-    let year =2026
-    let age=year -Person.year
-   return age>18  }
+isAdultPresent = devs.some((Person) => {
+  let year = 2026
+  let age = year - Person.year
+  return age > 18
+}
 
 )
 // Complete the exercise in the space below:
@@ -300,11 +301,11 @@ Use Array.prototype.every() to determine if every person in the devs array is
 
 let isEveryone19OrOlder = null;
 
-isEveryone19OrOlder=devs.every((isOlder)=>{
-let year =2026
-    let age=year -isOlder.year
-    
-   return age>=19 
+isEveryone19OrOlder = devs.every((isOlder) => {
+  let year = 2026
+  let age = year - isOlder.year
+
+  return age >= 19
 
 })
 
@@ -326,9 +327,9 @@ a specific ID 823423 from an array of comment objects.
 
 let commentById = {};
 
-commentById=comments.find((oneperson)=>{
+commentById = comments.find((oneperson) => {
 
-return oneperson.id===823423
+  return oneperson.id === 823423
 
 })
 
@@ -350,9 +351,9 @@ of comment objects.
 
 let idx = null;
 
-idx=comments.findIndex((index)=>{
+idx = comments.findIndex((index) => {
 
-return index.id === 123523
+  return index.id === 123523
 
 })
 
@@ -361,3 +362,95 @@ return index.id === 123523
 // Check your work:
 console.log('Exercise 8 my result: ', idx);
 console.log('Exercise 8 correct result: ', 3);
+
+
+
+
+
+
+console.log('-------------------Level Up--------------------------')
+
+/*
+Level Up exercise 1: Array.prototype.reduce()
+
+Calculate the combined lifespan of all the inventors using 
+Array.prototype.reduce()
+
+- Each object in the array includes these properties: 
+  'first', 'last', 'year' (birth year), and 'passed' (year of death).
+- Use the Array.prototype.reduce() method to calculate the sum of the total 
+  years lived by all the inventors.
+- Store the total sum in the variable 'totalYearsLived'.
+
+Hints:
+
+- Inside the reduce callback function, calculate the lifespan of each inventor 
+  (passed - year).
+- Accumulate this lifespan in the 'totalYearsLived' variable.
+- Remember, reduce takes a callback function and an initial value for the 
+  accumulator.
+*/
+
+let totalYearsLived = 0;
+
+// Complete the exercise in the space below:
+totalYearsLived = inventors.reduce((yearlived, lifespan) => {
+
+  yearlived+= lifespan.passed - lifespan.year
+
+  return yearlived
+
+
+},0)
+// Check your work:
+console.log('Level Up 1 my result: ', totalYearsLived);
+console.log('Level Up 1 correct result: ', 861);
+
+
+
+/*
+Level Up exercise 2: Array.prototype.reduce()
+
+Tallying travel methods using Array.prototype.reduce(). 
+
+Count the number of times each travel method appears in the 'travelMethods'
+array.
+
+- The resulting object should have keys as the travel methods 
+  ('car', 'truck', 'bike', etc.) and values as their respective counts.
+- Store this object in the variable 'travelMethodCounts'.
+
+Hints:
+- Inside the reduce function, check if the travel method already exists as a key
+  in your accumulator object. If it does, increment its count. If not, add it 
+  to the object and give it a value of 1.
+- Since you want to return an object, be sure to pass an empty {} for the 
+  initial value of the "accumulator".
+*/
+
+let travelMethodCounts = {};
+
+// Complete the exercise in the space below:
+travelMethodCounts = travelMethods.reduce((counts, travelBy) => {
+
+  if (counts[travelBy]) {
+    counts[travelBy]++
+  } else {
+    counts[travelBy] = 1
+  }
+
+  return counts
+
+},{});
+// Check your work:
+console.log('Level Up 2 my result: ', travelMethodCounts);
+console.log('Level Up 2 correct result: ', {
+  car: 5,
+  truck: 3,
+  bike: 2,
+  walk: 2,
+  van: 2,
+});
+
+
+
